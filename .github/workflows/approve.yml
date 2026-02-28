@@ -1,0 +1,48 @@
+name: approve-queue
+
+on:
+  workflow_dispatch:
+
+jobs:
+  approve:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - run: |
+          python run_bot.py
+        env:
+          MODE: approve
+          DRY_RUN: ${{ secrets.DRY_RUN }}
+
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+
+          MIN_SCORE_VERIFIED: ${{ secrets.MIN_SCORE_VERIFIED }}
+          MIN_SCORE_UNVERIFIED: ${{ secrets.MIN_SCORE_UNVERIFIED }}
+          QUEUE_MIN_SCORE: ${{ secrets.QUEUE_MIN_SCORE }}
+
+          ACCOUNT_TAG: ${{ secrets.ACCOUNT_TAG }}
+          CARD_TITLE: ${{ secrets.CARD_TITLE }}
+          CARD_FOOTER: ${{ secrets.CARD_FOOTER }}
+
+          LINK_HUB_URL: ${{ secrets.LINK_HUB_URL }}
+          CTA_EVERY_N_POSTS: ${{ secrets.CTA_EVERY_N_POSTS }}
+          CTA_TEXT: ${{ secrets.CTA_TEXT }}
+
+          ONLY_VERIFIED: ${{ secrets.ONLY_VERIFIED }}
+          APPROVE_POST_LIMIT: ${{ secrets.APPROVE_POST_LIMIT }}
+
+          SELF_REPLY_ENABLED: ${{ secrets.SELF_REPLY_ENABLED }}
+          SELF_REPLY_TEXT: ${{ secrets.SELF_REPLY_TEXT }}
+
+          TEMPLATE_ROTATION: ${{ secrets.TEMPLATE_ROTATION }}
+          METRICS_ENABLED: ${{ secrets.METRICS_ENABLED }}
