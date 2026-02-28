@@ -73,4 +73,4 @@ jobs:
           SELF_REPLY_TEXT: ${{ secrets.SELF_REPLY_TEXT }}
 
           TEMPLATE_ROTATION: ${{ secrets.TEMPLATE_ROTATION }}
-          METRICS_ENABLED: ${{ secrets.METRICS_ENABLED }}
+          METRICS_ENABLED: ${{ secrets.METRICS_ENABLED }}                                                                                                          
